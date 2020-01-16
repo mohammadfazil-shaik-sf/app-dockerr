@@ -9,6 +9,7 @@ const pool = new Pool({
 });
 
 express()
+  .get('/times', (req, res) => res.send(showTimes()))
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
