@@ -29,11 +29,8 @@ express()
       console.error(err);
       res.send("Error " + err);
     }
-  })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-
-  express().use(enforce.HTTPS());
-
+  }).use(enforce.HTTPS())
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 showTimes = () => {
   let result = ''
