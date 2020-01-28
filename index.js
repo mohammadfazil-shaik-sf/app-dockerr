@@ -29,7 +29,7 @@ express()
       console.error(err);
       res.send("Error " + err);
     }
-  }).use(enforce.HTTPS())
+  }).use(enforce.HTTPS({ trustProtoHeader: true }))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 showTimes = () => {
