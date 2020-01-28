@@ -10,6 +10,7 @@ const pool = new Pool({
 
 const enforce = require('express-sslify');
 
+express().use(enforce.HTTPS({ trustProtoHeader: true }));
 
 express()
   .get('/times', (req, res) => res.send(showTimes()))
@@ -29,7 +30,7 @@ express()
       console.error(err);
       res.send("Error " + err);
     }
-  }).use(enforce.HTTPS({ trustProtoHeader: true }))
+  })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 showTimes = () => {
