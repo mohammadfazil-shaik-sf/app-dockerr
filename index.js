@@ -1,6 +1,7 @@
 const cool = require('cool-ascii-faces')
 const express = require('express')
 const path = require('path')
+const http = require('http')
 const PORT = process.env.PORT || 5000
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -8,12 +9,13 @@ const pool = new Pool({
   ssl: true
 });
 
+const app = express();
+
 const enforce = require('express-sslify');
 
-express().use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
-express()
-  .get('/times', (req, res) => res.send(showTimes()))
+app.get('/times', (req, res) => res.send(showTimes()))
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
@@ -30,8 +32,10 @@ express()
       console.error(err);
       res.send("Error " + err);
     }
-  })
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+  });
+
+
+  http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 showTimes = () => {
   let result = ''
