@@ -8,6 +8,9 @@ const pool = new Pool({
   ssl: true
 });
 
+const enforce = require('express-sslify');
+
+
 express()
   .get('/times', (req, res) => res.send(showTimes()))
   .use(express.static(path.join(__dirname, 'public')))
@@ -28,6 +31,9 @@ express()
     }
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+  express().use(enforce.HTTPS());
+
 
 showTimes = () => {
   let result = ''
