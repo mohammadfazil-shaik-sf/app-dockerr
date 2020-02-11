@@ -9,6 +9,8 @@ const pool = new Pool({
   ssl: true
 });
 
+import showtime;
+
 const app = express();
 
 const enforce = require('express-sslify');
@@ -37,11 +39,11 @@ app.get('/times', (req, res) => res.send(showTimes()))
 
   http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-showTimes = () => {
-  let result = ''
-  const times = process.env.TIMES || 5
-  for (i = 0; i < times; i++) {
-    result += i + ' '
-  }
-  return result;
-}
+// showTimes = () => {
+//   let result = ''
+//   const times = process.env.TIMES || 5
+//   for (i = 0; i < times; i++) {
+//     result += i + ' '
+//   }
+//   return result;
+// }
