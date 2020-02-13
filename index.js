@@ -4,6 +4,7 @@ const path = require('path')
 const http = require('http')
 const PORT = process.env.PORT || 5000
 const { Pool } = require('pg');
+var client = require('redis').createClient(process.env.REDIS_URL);
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
