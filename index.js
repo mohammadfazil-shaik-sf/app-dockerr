@@ -10,8 +10,6 @@ const pool = new Pool({
   ssl: true
 });
 
-import showtime;
-
 const app = express();
 
 const enforce = require('express-sslify');
