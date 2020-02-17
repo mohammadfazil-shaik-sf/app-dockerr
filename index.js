@@ -35,7 +35,7 @@ app.get('/times', (req, res) => res.send(showTimes()))
   });
 
 var url   = require('url');
-var Redis = require('ioredis');
+var Redis = require('redis');
 redis_uri = url.parse(process.env.REDIS_URL);
 var redis = new Redis({
   port: Number(redis_uri.port) + 1,
@@ -50,7 +50,6 @@ var redis = new Redis({
 });
 
   http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
 showTimes = () => {
    let result = ''
    const times = process.env.TIMES || 5
