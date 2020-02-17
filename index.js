@@ -34,18 +34,6 @@ app.get('/times', (req, res) => res.send(showTimes()))
     }
   });
 
-
-  http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-showTimes = () => {
-   let result = ''
-   const times = process.env.TIMES || 5
-   for (i = 0; i < times; i++) {
-     result += i + ' '
-   }
-   return result;
-}
-
 var url   = require('url');
 var Redis = require('ioredis');
 redis_uri = url.parse(process.env.REDIS_URL);
@@ -60,3 +48,15 @@ var redis = new Redis({
     agent: false
   }
 });
+
+  http.createServer(app).listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+showTimes = () => {
+   let result = ''
+   const times = process.env.TIMES || 5
+   for (i = 0; i < times; i++) {
+     result += i + ' '
+   }
+   return result;
+}
+
