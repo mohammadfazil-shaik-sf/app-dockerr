@@ -45,6 +45,7 @@ showTimes = () => {
    }
    return result;
 }
+
 var url   = require('url');
 var Redis = require('ioredis');
 redis_uri = url.parse(process.env.REDIS_URL);
